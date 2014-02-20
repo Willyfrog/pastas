@@ -1,10 +1,15 @@
-<!doctype html>
-<head>
-  <title>{{user}} wrote {{key}}</title>
-  <link rel="stylesheet" href="/static/pygments.css" type="text/css">
-</head>
-<body>
-  <div name="code">
+{% extends "layout.html" %}
+
+{% block title %}
+<title>{{user}} wrote {{key}}</title>
+{% endblock %}
+
+{% block body %}
+<div name="syntax">
+  <pre>
     {{pasta|safe}}
-  </div>
-</body>
+  </pre>
+</div>
+{% endblock %}
+
+

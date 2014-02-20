@@ -10,17 +10,16 @@
 (setv app (apply Flask ["__main__"] {"template_folder" tmpl-dir "static_folder" static-dir}))
 
 (route get-index "/" []
-       (str "Welcome to Pastas")) 
+       (render-template "home.html")) 
 
-(route post-index "/list" []
-       (let [[pasta-list (list-comp (string x) [x (model.get-some-pasta)])]]
-         (print pasta-list)
-         (.join ", " pasta-list)))
+(route post-index "/list/" []
+       (let [[pasta-list (model.get-some-pasta)]]
+         (apply render-template ["pasta-list.html"] {"pasta_list" pasta-list})))
 
 
-(route-with-methods  both-index "/new" ["GET" "POST"] []
+(route-with-methods  both-index "/new/" ["GET" "POST"] []
                      (if (= request.method "GET")
-                       (str "Hy to get world!")
+                       (render-template "new.html")
                        (let [[user (get request.form "user")]
                              [key (get request.form "key")]
                              [content (get request.form "content")]]

@@ -20,6 +20,6 @@
 
 (defn pasta-with-sauce [pasta lexer]
   (let [[lex (get-lexer-by-name lexer)]]
-    {"user" (get pasta "user") 
+    {"user" (get pasta "user")
      "key" (get pasta "key")
-     "code" (highlight (get pasta "code") lex (HtmlFormatter))}))
+     "code" (highlight (get pasta "code") lex (apply HtmlFormatter [] {"linenos" true}))}))

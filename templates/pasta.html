@@ -1,7 +1,11 @@
-<!doctype html>
+{% extends "layout.html" %}
+
+{% block title %}
 <title>{{user}} wrote {{key}}</title>
-<body>
+{% endblock %}
+
+{% block body %}
 <pre>
   {{pasta}}
 </pre>
-</body>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>Have some Pasta!</title>
+{% endblock %}
+
+{% block body %}
+  <div>
+    <h2>CopyPastas!</h2>
+  </div>
+  <div name="pastalist">
+    <ul>
+      {% for p in pasta_list %}
+      <li><a href="/c/{{ p.user }}/{{ p.key }}">{{ p.user }}: {{ p.key }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
