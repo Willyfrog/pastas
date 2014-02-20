@@ -9,7 +9,10 @@
        (str "Welcome to Pastas")) 
 
 (route post-index "/list" []
-       (list (model.get-some-pasta)))
+       (let [[pasta-list (list-comp (string x) [x (model.get-some-pasta)])]]
+         (print pasta-list)
+         (.join ", " pasta-list)))
+
 
 (route-with-methods  both-index "/new" ["GET" "POST"] []
                      (if (= request.method "GET")
