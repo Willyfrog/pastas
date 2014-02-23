@@ -8,10 +8,12 @@
   <h2>New Paste!</h2>
 </div>
 <div>
+  <form method="POST" action="/new/">
   <input type="text" name="user"/>
   <input type="text" name="key"/>
   <textarea name="code">
   </textarea>
-  
+  <input type="submit"/>
+  </form>
 </div>
 {% endblock %}
