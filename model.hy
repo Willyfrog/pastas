@@ -1,9 +1,12 @@
-(import dataset)
-(import [pygments [highlight]])
-(import [pygments.lexers [get-lexer-by-name]])
-(import [pygments.formatters [HtmlFormatter]])
+(import string
+        random
+        dataset
+        [pygments [highlight]]
+        [pygments.lexers [get-lexer-by-name]]
+        [pygments.formatters [HtmlFormatter]]
+        [core [db get-or-default]])
 
-(setv db (dataset.connect "sqlite:///pastas.db")) ;; bb.dd. en memoria
+
 (setv pastas (get db "pastas"))
 
 (defn add-pasta [user key code]
@@ -18,8 +21,26 @@
 (defn get-some-pasta [&optional [num-pastas 10]]
   (take num-pastas pastas))
 
+(defn used-key? [user key]
+  "Does the user already have that key?"
+  (not (none? (get-pasta user key))))
+
+(defn -gen-random []
+  (.join "" (random.sample (+ string.letters string.digits) 8)))
+
+(defn gen-key [user &optional [gen-fun -gen-random]]
+  "Generate a valid & random key for the user"
+  (setv key (gen-fun))
+  (setv count 5)
+  (while (and (> count 0) (used-key? user key))
+    (setv key (gen-fun))
+    (setv count (dec count)))
+  (if (> count 0)
+    key
+    (raise KeyError)))
+
 (defn pasta-with-sauce [pasta lexer]
   (let [[lex (get-lexer-by-name lexer)]]
-    {"user" (get pasta "user")
-     "key" (get pasta "key")
+    {"user" (get-or-default pasta "user")
+     "key" (get-or-default pasta "key")
      "code" (highlight (get pasta "code") lex (apply HtmlFormatter [] {"linenos" true}))}))

@@ -4,16 +4,31 @@
 {% endblock %}
 
 {% block body %}
-<div>
-  <h2>New Paste!</h2>
-</div>
-<div>
+<div id="form-new">
+  <h2>Create a new Paste!</h2>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class="flash">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
   <form method="POST" action="/new/">
-  <input type="text" name="user"/>
-  <input type="text" name="key"/>
-  <textarea name="code">
-  </textarea>
-  <input type="submit"/>
+    <fieldset>
+      <label for="user">User (optional):</label>
+      <input type="text" id="user" placeholder="Anonymous"{% if user %} value="{{user}}"{% endif %} /><br/>
+
+      <label for="key">Paste Name (optional):</label>
+      <input type="text" id="key"{% if key %} value="{{key}}"{% endif %} /><br/>
+
+      <label for="code">Code:</label>
+      <textarea id="code" name="code" cols=60 rows=15 >{% if code %}{{code}}{% endif %}</textarea>
+
+      <input type="submit" value="Share"/>
+
+    </fieldset>
   </form>
 </div>
 {% endblock %}
