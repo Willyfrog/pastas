@@ -98,8 +98,8 @@ textarea {
    ========================================================================== */
 
 body {
-    background: #728eaa;
-    font-family: sans-serif; 
+    background: #ccc;
+    font-family: sans-serif;
 }
 h2 {
         color: #445668; 
@@ -108,10 +108,11 @@ h2 {
         text-shadow: 0px 1px 0px #f2f2f2;
 }
 #form-new {
-    width: 80%; margin: 30px auto; padding: 30px 30px;
-    background: #c9d0de; border: 1px solid #e1e1e1;
-    -moz-box-shadow: 0px 0px 8px #444;
-    -webkit-box-shadow: 0px 0px 8px #444;
+    width: 80%; 
+    margin: 30px auto; 
+    padding: 30px 30px;
+    background: #aaa;
+    border: 1px solid #e1e1e1;
 }
 
 label {
@@ -121,21 +122,19 @@ label {
         width: 200px;
 	text-align: right; 
         color: #445668; 
-        text-shadow: 0px 1px 0px #f2f2f2;
 }
 
 input {
-	width: 260px;
-        height: 35px;
-        padding: 5px 20px 0px 20px; 
-        margin: 0 0 20px 0; 
-	background: #5E768D;
-	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-	-moz-box-shadow: 0px 1px 0px #f2f2f2;
-        -webkit-box-shadow: 0px 1px 0px #f2f2f2;
-	font-family: sans-serif; 
-        color: #f2f2f2; 
-        text-shadow: 0px -1px 0px #334f71; 
+    float: left;
+    clear: left;
+    height: 35px;
+    width: 95%;
+    padding: 5px; 
+    margin: 0px; 
+    background: #ccc;
+    font-family: sans-serif; 
+    color: #555;
+    border: 1px 0 1px 0 solid #555;
 }
 input[type=submit] {
 	width: 185px; 
@@ -145,24 +144,22 @@ input[type=submit] {
         margin: 0 15px 0 0;
 	-moz-box-shadow: 0px 0px 5px #999;
         -webkit-box-shadow: 0px 0px 5px #999;
-	border: 1px solid #556f8c;
+	border: 1px solid #999;
 	cursor: pointer;
+        background: #ccf;
+        
 }
 textarea {
-    width: 90%; 
+    float:left;
+    clear:left;
     height: 270px; 
-    padding: 12px 20px 0px 20px; 
-    margin: 20 0 20px 0; 
-    background: #5E768D;
-    border-radius: 5px; 
-    -moz-border-radius: 5px; 
-    -webkit-border-radius: 5px;
-    -moz-box-shadow: 0px 1px 0px #f2f2f2;
-    -webkit-box-shadow: 0px 1px 0px #f2f2f2;
-    font-family: 'Consolas','DejaVu Sans Mono','Bitstream Vera Sans Mono',monospace;
+    width: 95%;
+    padding: 12px 20px 20px 20px; 
+    margin: 0;
+    background: #ccc;
+    border: 1px 0 1px 0 solid #555;
+    font-family: 'Consolas','DejaVu Sans Mono','Bitstream Vera Sans Mono','monospace';
     font-size: 14px;
-    color: #f2f2f2;
-    text-shadow: 0px -1px 0px #334f71;
 }
 
 

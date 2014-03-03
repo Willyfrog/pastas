@@ -15,18 +15,12 @@
   </ul>
   {% endif %}
   {% endwith %}
-  <form method="POST" action="/new/">
+  <form method="POST" action="/new/" >
     <fieldset>
-      <label for="user">User (optional):</label>
-      <input type="text" id="user" placeholder="Anonymous"{% if user %} value="{{user}}"{% endif %} /><br/>
-
-      <label for="key">Paste Name (optional):</label>
-      <input type="text" id="key"{% if key %} value="{{key}}"{% endif %} /><br/>
-
-      <label for="code">Code:</label>
-      <textarea id="code" name="code" cols=60 rows=15 >{% if code %}{{code}}{% endif %}</textarea>
-
-      <input type="submit" value="Share"/>
+      <input type="text" name="user" placeholder="User (optional)"{% if user %} value="{{user}}"{% endif %} />
+      <input type="text" name="key" placeholder="Paste name (optional)"{% if key %} value="{{key}}"{% endif %} />
+      <textarea id="code" name="code" placeholder="Write some code here." >{% if code %}{{code}}{% endif %}</textarea>
+      <input type="submit" name="send" value="Share"/>
 
     </fieldset>
   </form>
