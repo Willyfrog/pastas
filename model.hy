@@ -1,5 +1,6 @@
-(import string
+(import [string :as String]
         random
+        re
         dataset
         [pygments [highlight]]
         [pygments.lexers [get-lexer-by-name]]
@@ -26,7 +27,7 @@
   (not (none? (get-pasta user key))))
 
 (defn -gen-random []
-  (.join "" (random.sample (+ string.letters string.digits) 8)))
+  (.join "" (random.sample (+ String.letters String.digits) 8)))
 
 (defn gen-key [user &optional [gen-fun -gen-random]]
   "Generate a valid & random key for the user"
@@ -44,3 +45,4 @@
     {"user" (get-or-default pasta "user")
      "key" (get-or-default pasta "key")
      "code" (highlight (get pasta "code") lex (apply HtmlFormatter [] {"linenos" true}))}))
+

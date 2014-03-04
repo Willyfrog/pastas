@@ -2,7 +2,9 @@
 
 (import [core [app get-or-default]]
          model
-         [flask [request render-template abort flash redirect url-for]])
+         [flask [request render-template abort flash redirect url-for]]
+         [slugify [slugify]]
+         )
 
 (require methy)
 
@@ -22,17 +24,17 @@
 
 (route-with-methods  create-new "/new/" ["GET" "POST"] []
                      (if (= request.method "GET")
-                       (apply render-template ["new.html"] {"user" (get-or-default request.args "user" "") 
-                                                            "key" (get-or-default request.args "key" "")
+                       (apply render-template ["new.html"] {"user" (slugify (get-or-default request.args "user" "")) 
+                                                            "key" (slugify (get-or-default request.args "key" ""))
                                                             "code" (get-or-default request.args "code" "")})
                        
-                       (let [[user (get-or-default request.form "user" "Anonymous")]
-                             [key (get-or-default request.form "key" (try 
-                                                                      (model.gen-key user)
-                                                                      (except [e KeyError]
-                                                                        (progn 
-                                                                         (app.logger.error "Too many retries to generate a key")
-                                                                         (abort 500)))))]
+                       (let [[user (slugify (get-or-default request.form "user" "Anonymous"))]
+                             [key (slugify (get-or-default request.form "key" (try 
+                                                                                     (model.gen-key user)
+                                                                                     (except [e KeyError]
+                                                                                       (progn 
+                                                                                        (app.logger.error "Too many retries to generate a key")
+                                                                                        (abort 500))))))]
                              [code (.strip (get-or-default request.form "code" ""))]]
                          (app.logger.debug (% "user %s key %s code %s" (, user key code)))
 
