@@ -2,7 +2,7 @@
 
 (import [core [app get-or-default]]
          model
-         [flask [request render-template abort flash redirect url-for]]
+         [flask [request render-template abort flash redirect url-for make-response]]
          [slugify [slugify]]
          )
 
@@ -54,7 +54,9 @@
 
 (route get-pasta-with-sauce "/c/<user>/<key>/<lexer>/" [user key lexer]
        (let [[pasta (model.get-pasta user key)]]
-         (if (none? pasta)
-           (abort 404)
-           (apply render-template ["pasta-sauce.html"] {"pasta" (get (model.pasta-with-sauce pasta lexer) "code") "user" user "key" key}))))
+         (cond [(none? pasta) (abort 404)]
+               [(= (.lower lexer) "raw") (let [[response (make-response (get (model.get-pasta user key) "code"))]]
+                                           (setv (get response.headers "Content-Type") "text/plain; charset=utf-8")
+                                           response)]
+               [true (apply render-template ["pasta-sauce.html"] {"pasta" (get (model.pasta-with-sauce pasta lexer) "code") "user" user "key" key})])))
 
