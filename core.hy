@@ -19,3 +19,5 @@
    (get col key)
    (except [e [KeyError IndexError]]
      default-value)))
+
+(setv lexer-list [(, "python" "Python") (, "raw" "Raw") (, "clj" "Clojure") (, "php" "PHP") (, "html" "HTML")])

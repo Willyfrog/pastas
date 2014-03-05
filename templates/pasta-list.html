@@ -8,11 +8,37 @@
   <div>
     <h2>CopyPastas!</h2>
   </div>
+  <div name="sauce-type">
+    <label for="sauce">Set highlight to:</label>
+    <select id="sauce">
+      <option selected>no choice</option>
+      {% for name, description in sauce_list%}
+      <option value={{name}}>{{description}}</option>
+      {% endfor %}
+    </select>
+  </div>
   <div name="pastalist">
     <ul>
       {% for p in pasta_list %}
-      <li><a href="/c/{{ p.user }}/{{ p.key }}">{{ p.user }}: {{ p.key }}</a></li>
+      <li><a class="pasta" href="/c/{{ p.user }}/{{ p.key }}">{{ p.user }}: {{ p.key }}</a></li>
       {% endfor %}
     </ul>
   </div>
+{% endblock %}
+
+{% block customscripts %}
+  <script>
+   function get_lexer_url() {
+     var lexer = "";
+     if ($('select#sauce').val() != "no choice") {
+       lexer = "/" + $('select#sauce').val();
+     }
+     return lexer;
+   }
+   $('document').ready(function () {
+     $('a.pasta').click(function (e) {
+       this.href=this.href + get_lexer_url();
+     });
+   });
+  </script>
 {% endblock %}

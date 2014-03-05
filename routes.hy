@@ -1,6 +1,6 @@
 ;(require hy.contrib.meth)
 
-(import [core [app get-or-default]]
+(import [core [app get-or-default lexer-list]]
          model
          [flask [request render-template abort flash redirect url-for make-response]]
          [slugify [slugify]]
@@ -14,7 +14,7 @@
 
 (route list-pastes "/list/" []
        (let [[pasta-list (apply model.get-some-pasta)]]
-         (apply render-template ["pasta-list.html"] {"pasta_list" pasta-list})))
+         (apply render-template ["pasta-list.html"] {"pasta_list" pasta-list "sauce_list" lexer-list})))
 
 (route get-pasta "/c/<user>/<key>/" [user key]
        (let [[pasta (model.get-pasta user key)]]

@@ -60,7 +60,7 @@ hr {
 audio,
 canvas,
 img,
-video {
++video {
     vertical-align: middle;
 }
 
@@ -115,6 +115,14 @@ h2 {
     border: 1px solid #e1e1e1;
 }
 
+.flash > li {
+    width: 95%;
+    background: #caa;
+    padding: 5px;
+    border: 1px solid #ecc;
+    list-style-type: none;
+}
+
 label {
 	float: left; 
         clear: left; 
@@ -129,23 +137,23 @@ input {
     clear: left;
     height: 35px;
     width: 95%;
-    padding: 5px; 
+    padding: 5px 20px;
     margin: 0px; 
     background: #ccc;
     font-family: sans-serif; 
     color: #555;
-    border: 1px 0 1px 0 solid #555;
+    border: 1px  solid #AAA;
+    border-spacing: 1px;
 }
 input[type=submit] {
 	width: 185px; 
         height: 52px; 
         float: right; 
         padding: 10px 15px; 
-        margin: 0 15px 0 0;
-	-moz-box-shadow: 0px 0px 5px #999;
-        -webkit-box-shadow: 0px 0px 5px #999;
+        margin: 15px;
+	/*-moz-box-shadow: 0px 0px 5px #999;
+        -webkit-box-shadow: 0px 0px 5px #999;*/
 	border: 1px solid #999;
-	cursor: pointer;
         background: #ccf;
         
 }
