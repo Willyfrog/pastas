@@ -15,9 +15,13 @@
 (setv db (dataset.connect "sqlite:///pastas.db")) ;; bb.dd. en memoria
 
 (defn get-or-default [col key &optional [default-value None]]
-  (try
-   (get col key)
-   (except [e [KeyError IndexError]]
-     default-value)))
+  (let [[val  
+           (try
+            (get col key)
+            (except [e [KeyError IndexError]]
+              default-value))]]
+    (if (or (none? val) (empty? val))
+      default-value
+      val)))
 
 (setv lexer-list [(, "python" "Python") (, "raw" "Raw") (, "clj" "Clojure") (, "php" "PHP") (, "html" "HTML")])
