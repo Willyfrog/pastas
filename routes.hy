@@ -12,9 +12,16 @@
 (route get-index "/" []
        (render-template "home.html")) 
 
+(defn show-pasta-list [pasta-list]
+  (apply render-template ["pasta-list.html"] {"pasta_list" pasta-list "sauce_list" lexer-list}))
+
 (route list-pastes "/list/" []
-       (let [[pasta-list (apply model.get-some-pasta)]]
-         (apply render-template ["pasta-list.html"] {"pasta_list" pasta-list "sauce_list" lexer-list})))
+       (let [[pasta-list (model.get-some-pasta)]]
+         show-pasta-list pasta-list))
+
+(route user-pastes "/list/<user>/" [user]
+       (let [[pasta-list (model.get-user-pasta user)]]
+         show-pasta-list pasta-list))
 
 (route get-pasta "/c/<user>/<key>/" [user key]
        (let [[pasta (model.get-pasta user key)]]

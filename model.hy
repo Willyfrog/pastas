@@ -22,6 +22,9 @@
 (defn get-some-pasta [&optional [num-pastas 10]]
   (take num-pastas pastas))
 
+(defn get-user-pasta [user]
+  (apply pastas.find [] {"user" user}))
+
 (defn used-key? [user key]
   "Does the user already have that key?"
   (not (none? (get-pasta user key))))
