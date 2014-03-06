@@ -17,11 +17,11 @@
 
 (route list-pastes "/list/" []
        (let [[pasta-list (model.get-some-pasta)]]
-         show-pasta-list pasta-list))
+         (show-pasta-list pasta-list)))
 
 (route user-pastes "/list/<user>/" [user]
        (let [[pasta-list (model.get-user-pasta user)]]
-         show-pasta-list pasta-list))
+         (show-pasta-list pasta-list)))
 
 (route get-pasta "/c/<user>/<key>/" [user key]
        (let [[pasta (model.get-pasta user key)]]
