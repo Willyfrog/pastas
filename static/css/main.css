@@ -124,15 +124,23 @@ h2 {
 }
 
 label {
-	float: left; 
-        clear: left; 
         margin: 11px 20px 0 0; 
         width: 200px;
 	text-align: right; 
-        color: #445668; 
 }
 
-input {
+.pasta-list > li {
+    list-style-type: none;
+    margin: 4px;
+}
+
+select {
+    background: #aaa;
+    color: #555;
+    border: 1px solid #888;
+}
+
+#form-new input {
     float: left;
     clear: left;
     height: 35px;
@@ -143,9 +151,8 @@ input {
     font-family: sans-serif; 
     color: #555;
     border: 1px  solid #AAA;
-    border-spacing: 1px;
 }
-input[type=submit] {
+#form-new input[type=submit] {
 	width: 185px; 
         height: 52px; 
         float: right; 
@@ -157,7 +164,7 @@ input[type=submit] {
         background: #ccf;
         
 }
-textarea {
+#form-new textarea {
     float:left;
     clear:left;
     height: 270px; 

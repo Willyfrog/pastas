@@ -18,7 +18,7 @@
     </select>
   </div>
   <div name="pastalist">
-    <ul>
+    <ul class="pasta-list">
       {% for p in pasta_list %}
       <li><a class="pasta" href="/c/{{ p.user }}/{{ p.key }}">{{ p.user }}: {{ p.key }}</a></li>
       {% endfor %}
@@ -37,7 +37,7 @@
    }
    $('document').ready(function () {
      $('a.pasta').click(function (e) {
-       this.href=this.href + get_lexer_url();
+       this.href = this.href + get_lexer_url();
      });
    });
   </script>
