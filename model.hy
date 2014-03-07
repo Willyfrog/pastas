@@ -5,7 +5,7 @@
         [pygments [highlight]]
         [pygments.lexers [get-lexer-by-name]]
         [pygments.formatters [HtmlFormatter]]
-        [core [db get-or-default]])
+        [core [db get-or-default +PPP+]])
 
 
 (setv pastas (get db "pastas"))
@@ -19,8 +19,8 @@
 (defn get-pasta [user key]
   (apply pastas.find-one [] {"user" user "key" key}))
 
-(defn get-some-pasta [&optional [num-pastas 10]]
-  (take num-pastas pastas))
+(defn get-some-pasta [&optional [num-pastas +PPP+] [start-from 0]]
+  (take num-pastas (drop (* start-from num-pastas) pastas)))
 
 (defn get-user-pasta [user]
   (apply pastas.find [] {"user" user}))
@@ -49,3 +49,5 @@
      "key" (get-or-default pasta "key")
      "code" (highlight (get pasta "code") lex (apply HtmlFormatter [] {"linenos" true}))}))
 
+(defn count []
+  (len pastas))

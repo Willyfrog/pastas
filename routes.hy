@@ -19,6 +19,10 @@
        (let [[pasta-list (model.get-some-pasta)]]
          (show-pasta-list pasta-list)))
 
+(route list-pastes-page "/list/<int:page>" [page]
+       (let [[pasta-list (apply model.get-some-pasta [] {"start_from" page})]]
+         (show-pasta-list pasta-list)))
+
 (route user-pastes "/list/<user>/" [user]
        (let [[pasta-list (model.get-user-pasta user)]]
          (show-pasta-list pasta-list)))
