@@ -27,6 +27,10 @@
        (let [[pasta-list (model.get-user-pasta user)]]
          (show-pasta-list pasta-list)))
 
+(route user-list "/list/users/" []
+       "get a list of the users of the system"
+       (apply render-template ["users.html"] {"users" (model.get-user-list)))
+
 (route get-pasta "/c/<user>/<key>/" [user key]
        (let [[pasta (model.get-pasta user key)]]
          (if (none? pasta)
