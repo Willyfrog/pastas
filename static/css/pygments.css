@@ -123,6 +123,12 @@ pre .il { color: #40a070 } /* Literal.Number.Integer.Long */
 .syntax pre .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .syntax pre .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .syntax pre .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+td.linenos {
+    background-color: #f0f0f0;
+    padding-right: 10px
+}
 
-
-
+span.lineno {
+    background-color: #f0f0f0;
+    padding: 0 5px 0 5px
+}
