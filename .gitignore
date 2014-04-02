@@ -1,2 +1,5 @@
 .venv
-.json
+*.json
+*.pyc
+*.hyc
+*.db
